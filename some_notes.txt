@@ -1,0 +1,34 @@
+Some notes
+
+<Request and Response>
+
+So you are at home and you want to watch some youtube.
+Assuming you are connected to the internet with your local isp
+your computer will talk to your isp's DNS server(Domain Name Server)
+DNS Servers don't hold webpage files but they associate domain names
+with a particular ip address. So say the first DNS server doesn't know
+where www.youtube.com so it goes off and asks another DNS server
+which lets say it does know will message back the first DNS Server
+"Hey the IP address for youtube is 12.3.4.56" which will cache that
+info and then send the info back to my computer.
+
+Now I know the IP address of youtube, then my computer connects with the hosting server.
+My computer makes a request to the hosting server and the response I get is in the
+form of a webpage
+
+
+You make the request in forms of http headers and the server will respond
+with some http response headers and some content (HTTP,CSS etc)
+
+
+
+
+<Site Planning>
+
+Brainstorm
+
+Flow Diagram of the site
+
+Drawn mockups of the website
+
+Site organization - naming convention of folders
