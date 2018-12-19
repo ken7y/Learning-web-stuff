@@ -32,3 +32,27 @@ Flow Diagram of the site
 Drawn mockups of the website
 
 Site organization - naming convention of folders
+
+
+<Github Pages>
+pages.github.com
+Host GitHub projects as websites. 
+
+
+
+<HTML Notes>
+
+so for <img src... alt=... title=.... > 
+alt is for when the image can't load and the alt text will be loaded
+title is when mouse hover over the image and the text will appear
+
+Head usage:Denotes the section of the HTML document that contains the title, metadata, and other browser related script, css, and shortcut icon links.
+
+
+Body usage: Denotes the section of the HTML document that contains all of the visible page content such as images, text, links, and page layout.
+
+
+In HTML5, semantic elements got introduced so instead of using a thousand divs you can 
+now use tags such as <section> <nav> <article> <header> <footer> etc so you don't lose
+your tags in the sea of divs 
+more here :http://diveintohtml5.info/semantics.html#new-elements
