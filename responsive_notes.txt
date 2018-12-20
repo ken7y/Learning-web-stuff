@@ -1,0 +1,26 @@
+<The problem> 
+
+There are many devices out there which can access webpages which means there are many ways to view the content due to size and proportions which can cause unexpected results such as text appearing too small or elements overlapping each other covering information. 
+
+This is where responsive sites come in 
+
+
+<Server side detection> 
+Basically if you're visiting twitter on your phone, it will send you to mobile.twitter.com. While this is a common solution, it requires having 2 sites which means every time I want to edit a site, I'll have to do it twice.
+
+<Responsive css> 
+Relies on combination of css media queries, responsive layout, text, media element styling and responding to viewport size. 
+
+
+<Desktop Down Design> 
+A approach to responsive approach. Site is designed for desktop devices and modified layouts are developed for tablet and mobile devices. Means by default, elements on the page have a width/height set for a larger screen. 
+
+<Mobile Down Design> 
+Start designing the website for a small screen first. The benefit is that it ensures users have a great experience on mobile. Most people interact with their phones more than their laptops so it makes sense for businesses to cater to these users first. 
+
+
+<bootstrap grid system> 
+
+class row creates horizontal separation. aka cuts aside horizontally
+
+class col creates columns so it separates the row into columns. aka cuts down vertically.
