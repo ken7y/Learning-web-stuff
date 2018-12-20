@@ -56,3 +56,74 @@ In HTML5, semantic elements got introduced so instead of using a thousand divs y
 now use tags such as <section> <nav> <article> <header> <footer> etc so you don't lose
 your tags in the sea of divs 
 more here :http://diveintohtml5.info/semantics.html#new-elements
+
+
+
+
+
+<Box Model>
+Every element can be seen as a box which has a width, height, padding(space inside an element, margin and borders. 
+Outside the element you can add a border and the spacing between one element and another element is the margin. Spacing inside the element is called padding. It spaces the content away from its walls. 
+
+In chrome the "width" is only the width of the content and does not include the outside
+layers such as padding, border and Margin 
+
+Set box-sizing to content box so browsers know to use w3c box model rather than internet explorers box model
+
+<Scaling elements>
+
+Fixed sizing : Pixels
+All columns are specified using pixels. 
+Pros: Widths are the same for all screens large and small
+
+Cons: Excessive white space for users with large rests and for small screens it may require horizontal scroll bars
+
+
+
+Elastic : Em
+
+Columns are sized using ems which are proportion to text size
+
+Pros: Containers scale up/down in according to text size
+Cons: If the text gets larger, the parent containers may bump into each other. Lot of test required
+
+
+Fluid: Percentages
+
+Pros: Makes full use of the screen and eliminate horizontal scroll bars
+
+Cons: Less control over what the user sees with regard to container sizes and where type and media wraps
+
+Using min/max 
+
+Min width, Max width, Min height, Max height. 
+So as the screen scales down, the element will be fluid until it hits a min.
+So its basically fluid but with min and max limitations. 
+
+
+<overflow>
+
+Visible : content will overflow out side of the container
+
+Hidden: Content will be chopped
+
+Scroll: scroll bar added
+
+auto: create scroll bars only when necessary 
+
+
+
+<element display> 
+Inline: appears side by side, does not accept width/top/bottom margin
+Block: displays one above the other, takes up whole line, able to specify width,top,bottom margin
+
+Divs/paras by default should automatically display block in the browser unless specified
+
+Spans,img,a tags display inline by default.  
+
+
+
+<z-index> 
+By default elements have a z index of 0. If you set it to a negative z index it will go behind everything and the higher the number the closer it will be to the viewer.
+
+
