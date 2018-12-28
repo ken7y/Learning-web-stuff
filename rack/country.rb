@@ -23,6 +23,22 @@ class Application
       @@items.each do |item|
         resp.write "#{item}\n"
       end
+
+      # for below to work you need to go to a url like
+      # http://localhost:9292/search?q=insertname
+      # however if i change the q from req.params to w
+      # the url would be
+      # http://localhost:9292/search?w=Canada
+
+    elsif req.path.match(/search/)
+      search_term = req.params["q"]
+
+      if @@items.include?(search_term)
+        resp.write "#{search_term} is a legit country\n"
+      else
+        resp.write "Couldn't find #{search_term}\n"
+      end
+
     else
       resp.write "Path not found"
     end
