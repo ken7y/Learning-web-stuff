@@ -1,3 +1,3 @@
-require_relative "./songs.rb"
+require_relative "./item_proj.rb"
 
 run Application.new
