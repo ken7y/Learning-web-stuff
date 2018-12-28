@@ -1,3 +1,8 @@
+# Generates a random number between 1 and 5 three times
+# and if all 3 numbers match then will print you win else
+# it will print you lose
+
+
 class Application
 
   def call(env)

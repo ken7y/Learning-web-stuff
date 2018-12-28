@@ -1,6 +1,8 @@
+# can check what countries are in the @@items array and also
+# allow you to search if a country exists. will tell you if country
+# exists or not
+
 class Application
-
-
   # @@ variables are like static variables in java
   # @ variables are just instance variables in java
   # they are only available to the specific instance of a class
