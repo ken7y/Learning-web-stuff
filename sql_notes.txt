@@ -1,7 +1,13 @@
 <SQL Notes>(specifically for sqlite3)
 SQL aka structured query language is a language for managing data in databases. It's only used for one thing which is talking to databases.
 
+
+<Helpful stuff>
+.headers on  # will output the name of each column e.g breed, age,id at the top
+.mode column #makes things look a lot cleaner. Use together with headers on
 .schema in sqlite3 for details on your table
+
+
 
 <creating tables>
 
@@ -71,9 +77,6 @@ SELECT * FROM cats; is a query as it selects all of the rows from a table called
 or SELECT * FROM cats WHERE name = "Maru"; 
 
 
-<Helpful stuff>
-.headers on  # will output the name of each column e.g breed, age,id at the top
-.mode column #makes things look a lot cleaner. Use together with headers on
 
 <Order by>
 
@@ -124,3 +127,67 @@ I can display names of all the cats and the dogs with this line
 SELECT cats.name, dogs.name FROM cats,dogs;
 
 Format is SELECT [table1.column,table2.column] FROM [table1,table2];
+
+
+<Aggregate Functions>
+These functions perform a calculation on specified values such as average, sum, count, min or max. 
+
+
+
+
+
+<Average>
+So to find the average of a column all you do it
+SELECT AVG(column name) FROM table name
+
+so SELECT AVG(age) FROM cats; 
+
+<Sum>
+The sum is very similar to average. You just replace AVG with SUM 
+
+SELECT SUM(age) FROM cats; 
+
+
+<Min and Max>
+
+So min and max is in the same style of avg and sum.
+
+SELECT MAX(net_worth) FROM cats;
+
+SELECT Min(age) FROM cats;
+
+
+
+
+
+<Multiple Tables> <Looking at two here in the examples>
+
+[pretext]
+So say two tables exist. First one is a bunch of info on cats and the second one is a table about the owners. 
+First table has a cat breed, age and owner_id which is the primary id of the owners in the owners table. 
+
+
+<Inner join> 
+
+We first select the columns that we want to display so cats.name, cats.breed and owners.name. 
+
+[SELECT cats.name, cats.breed, owners.name] 
+
+then we join the two tables together with inner join 
+
+[FROM cats INNER JOIN owners] or [FROM table1 INNER JOIN table2]
+
+lastly we tell our query how to connect the two tables. So in this case we match the cats.owner_id with the primary key ID of the owners table hence
+
+[ON cats.owner_id = owners.id] 
+
+making the big statement 
+
+[SELECT cats.name, cats.breed, owners.name FROM cats INNER JOIN owners ON cats.owner_id = owners.id] 
+
+<Left, Right and Full outer joins> 
+
+So a left outer joins is where everything on the left table aka table 1 is displayed and only the matches in table 2 or the right table will be displayed. 
+
+Right outer join is just left but reversed and full outer join will display everything in both tables but just joint together at the column you specified.
+

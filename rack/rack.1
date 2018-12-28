@@ -1,0 +1,442 @@
+.\" Manpage for rack
+.\" Contact sdk-support@rackspace.com to correct errors or typos
+.TH man 1 "18 May 28120" "1.2-dev" "rack man page"
+.SH NAME
+rack \- Command-line interface to manage Rackspace Cloud resources
+.SH DESCRIPTION
+The rack CLI manages authentication, configures a local setup, and provides workflows for operations on Rackspace Cloud resources
+
+
+.SH SYNOPSIS
+rack <command> <subcommand> <action> [OPTIONS]
+The following global options are available:
+.TP
+\fB\-\-username\fR
+The username with which to authenticate.
+.TP
+\fB\-\-api\-key\fR
+The API key with which to authenticate.
+.TP
+\fB\-\-auth\-tenant\-id\fR
+The tenant ID of the user to authenticate as. May only be provided as a command-line flag.
+.TP
+\fB\-\-auth\-token\fR
+The authentication token of the user to authenticate as. This must be used with the `auth-tenant-id` flag.
+.TP
+\fB\-\-auth\-url\fR
+The endpoint to which authenticate.
+.TP
+\fB\-\-region\fR
+The region to which authenticate.
+.TP
+\fB\-\-use\-service\-net\fR
+Whether or not to use the internal Rackspace network
+.TP
+\fB\-\-profile\fR
+The config file profile to use for authentication.
+.TP
+\fB\-\-output\fR
+Format in which to return output. Options: json, csv, table. Default is 'table'.
+.TP
+\fB\-\-no\-cache\fR
+Don't get or set authentication credentials in the rack cache.
+.TP
+\fB\-\-log\fR
+Print debug information from the command. Options are: debug, info
+.TP
+\fB\-\-no\-header\fR
+Don't return a header for CSV nor tabular output.
+.SH TOP-LEVEL COMMANDS
+.TP
+\fBconfigure\fR
+Interactively create a config file for Rackspace authentication
+.TP
+\fBinit\fR
+Enable tab for command completion.
+	For Linux and OS X, creates the `rack` man page and sets up
+	command completion for the Bash shell. Run `man ./rack.1` to
+	view the generated man page.
+	For Windows, creates a `posh_autocomplete.ps1` file in the
+	`$HOME/.rack` directory. You must run the file to set up
+	command completion
+
+.TP
+\fBversion\fR
+Print the version of this binary
+.SH PROFILE COMMANDS
+Used to perform operations on user profiles
+.SS "\s-1LIST COMMANDS\s0"
+.IX Subsection "LIST"
+.SH SERVERS COMMANDS
+Operations on cloud servers, both virtual and bare metal
+.SS "\s-1INSTANCE COMMANDS\s0"
+.IX Subsection "INSTANCE"
+.IP "\fBrack servers instance list  [flags]\fR"
+.IX Item "rack servers instance list  [flags]"
+Lists existing servers
+.IP "\fBrack servers instance create [--name <instanceName> | --stdin name] [flags]\fR"
+.IX Item "rack servers instance create [--name <instanceName> | --stdin name] [flags]"
+Creates a new server instance
+.IP "\fBrack servers instance get [--id <serverID> | --name <serverName> | --stdin id] [flags]\fR"
+.IX Item "rack servers instance get [--id <serverID> | --name <serverName> | --stdin id] [flags]"
+Retrieves an existing server
+.IP "\fBrack servers instance update [--id <serverID>|--name <serverName>] [flags]\fR"
+.IX Item "rack servers instance update [--id <serverID>|--name <serverName>] [flags]"
+Updates an existing server
+.IP "\fBrack servers instance delete [--id <serverID> | --name <serverName> | --stdin id] [flags]\fR"
+.IX Item "rack servers instance delete [--id <serverID> | --name <serverName> | --stdin id] [flags]"
+Deletes an existing server
+.IP "\fBrack servers instance reboot [--id <serverID> | --name <serverName> | --stdin id] [--soft | --hard] [flags]\fR"
+.IX Item "rack servers instance reboot [--id <serverID> | --name <serverName> | --stdin id] [--soft | --hard] [flags]"
+Reboots an existing server
+.IP "\fBrack servers instance rebuild [--id <serverID>|--name <serverName>] --image-id <image-id> --admin-pass <admin-pass> [flags]\fR"
+.IX Item "rack servers instance rebuild [--id <serverID>|--name <serverName>] --image-id <image-id> --admin-pass <admin-pass> [flags]"
+Rebuilds an existing server
+.IP "\fBrack servers instance resize [--id <serverID>|--name <serverName>|--stdin id] --flavor-id <flavor-id> [flags]\fR"
+.IX Item "rack servers instance resize [--id <serverID>|--name <serverName>|--stdin id] --flavor-id <flavor-id> [flags]"
+Resizes an existing server
+.IP "\fBrack servers instance list-addresses [--id <serverID> | --name <serverName> | --stdin id] [flags]\fR"
+.IX Item "rack servers instance list-addresses [--id <serverID> | --name <serverName> | --stdin id] [flags]"
+Lists existing IP addresses for the server
+.IP "\fBrack servers instance list-addresses-by-network --network <networkType> [--id <serverID> | --name <serverName> | --stdin id] [flags]\fR"
+.IX Item "rack servers instance list-addresses-by-network --network <networkType> [--id <serverID> | --name <serverName> | --stdin id] [flags]"
+Lists existing IP addresses for the given server and network
+.IP "\fBrack servers instance get-metadata  [flags]\fR"
+.IX Item "rack servers instance get-metadata  [flags]"
+Get all metadata associated with the given server
+.IP "\fBrack servers instance set-metadata  [flags]\fR"
+.IX Item "rack servers instance set-metadata  [flags]"
+Set metadata for the given server. This will erase any current metadata.
+.IP "\fBrack servers instance update-metadata  [flags]\fR"
+.IX Item "rack servers instance update-metadata  [flags]"
+Update metadata on the given server.
+.IP "\fBrack servers instance delete-metadata  [flags]\fR"
+.IX Item "rack servers instance delete-metadata  [flags]"
+Delete metadata associated with the given server
+.SS "\s-1IMAGE COMMANDS\s0"
+.IX Subsection "IMAGE"
+.IP "\fBrack servers image list  [flags]\fR"
+.IX Item "rack servers image list  [flags]"
+Lists images
+.IP "\fBrack servers image get [--id <imageID> | --name <imageName> | --stdin id] [flags]\fR"
+.IX Item "rack servers image get [--id <imageID> | --name <imageName> | --stdin id] [flags]"
+Retreives information about the image.
+.IP "\fBrack servers image create --name <imageName> [--server-id <serverID> | --server-name <serverName>] [flags]\fR"
+.IX Item "rack servers image create --name <imageName> [--server-id <serverID> | --server-name <serverName>] [flags]"
+Creates an image from a server instance.
+.IP "\fBrack servers image delete [--id <serverID> | --name <serverName> | --stdin id] [flags]\fR"
+.IX Item "rack servers image delete [--id <serverID> | --name <serverName> | --stdin id] [flags]"
+Deletes an image.
+.SS "\s-1FLAVOR COMMANDS\s0"
+.IX Subsection "FLAVOR"
+.IP "\fBrack servers flavor list  [flags]\fR"
+.IX Item "rack servers flavor list  [flags]"
+Lists flavors
+.IP "\fBrack servers flavor get [--id <flavorID> | --name <flavorName> | --stdin id] [flags]\fR"
+.IX Item "rack servers flavor get [--id <flavorID> | --name <flavorName> | --stdin id] [flags]"
+Retreives information about the flavor
+.SS "\s-1KEYPAIR COMMANDS\s0"
+.IX Subsection "KEYPAIR"
+.IP "\fBrack servers keypair list  [flags]\fR"
+.IX Item "rack servers keypair list  [flags]"
+Lists keypairs
+.IP "\fBrack servers keypair get [--name <keypairName> | stdin name] [flags]\fR"
+.IX Item "rack servers keypair get [--name <keypairName> | stdin name] [flags]"
+Retreives a keypair
+.IP "\fBrack servers keypair delete [--name <keypairName> | --stdin name] [flags]\fR"
+.IX Item "rack servers keypair delete [--name <keypairName> | --stdin name] [flags]"
+Deletes a keypair
+.IP "\fBrack servers keypair upload --name <keypairName> [--public-key <publicKey> | --file <file>] [flags]\fR"
+.IX Item "rack servers keypair upload --name <keypairName> [--public-key <publicKey> | --file <file>] [flags]"
+Uploads a keypair
+.IP "\fBrack servers keypair generate [--name <keypairName> | --stdin name] [flags]\fR"
+.IX Item "rack servers keypair generate [--name <keypairName> | --stdin name] [flags]"
+Generates a keypair
+.SS "\s-1VOLUME-ATTACHMENT COMMANDS\s0"
+.IX Subsection "VOLUME-ATTACHMENT"
+.IP "\fBrack servers volume-attachment list [--server-id <serverID> | --server-name <serverName> | --stdin id] [flags]\fR"
+.IX Item "rack servers volume-attachment list [--server-id <serverID> | --server-name <serverName> | --stdin id] [flags]"
+Lists attachments for the given server
+.IP "\fBrack servers volume-attachment create [--server-id <serverID> | --server-name <serverName>] [--volume-id <volumeID> | --volume-name <volumeName> | --stdin volume-id] [flags]\fR"
+.IX Item "rack servers volume-attachment create [--server-id <serverID> | --server-name <serverName>] [--volume-id <volumeID> | --volume-name <volumeName> | --stdin volume-id] [flags]"
+Creates a new volume attachment on the server
+.IP "\fBrack servers volume-attachment get [--server-id <serverID> | --server-name <serverName>] --id <attachmentID>  [flags]\fR"
+.IX Item "rack servers volume-attachment get [--server-id <serverID> | --server-name <serverName>] --id <attachmentID>  [flags]"
+Gets an existing volume attachment
+.IP "\fBrack servers volume-attachment delete [--server-id <serverID> | --server-name <serverName>] --id <attachmentID>  [flags]\fR"
+.IX Item "rack servers volume-attachment delete [--server-id <serverID> | --server-name <serverName>] --id <attachmentID>  [flags]"
+Deletes an existing volume attachment
+.SH FILES COMMANDS
+Object storage for files and media
+.SS "\s-1ACCOUNT COMMANDS\s0"
+.IX Subsection "ACCOUNT"
+.IP "\fBrack files account set-metadata --name <containerName> --metadata <metadata> [flags]\fR"
+.IX Item "rack files account set-metadata --name <containerName> --metadata <metadata> [flags]"
+Set metadata for the account. This will erase any current metadata.
+.IP "\fBrack files account update-metadata --name <containerName> --metadata <metadata> [flags]\fR"
+.IX Item "rack files account update-metadata --name <containerName> --metadata <metadata> [flags]"
+Create or replace metadata associated with the account. Any existing metadata will remain in tact.
+.IP "\fBrack files account get-metadata  [flags]\fR"
+.IX Item "rack files account get-metadata  [flags]"
+Get metadata associated with the account.
+.IP "\fBrack files account delete-metadata --metadata-keys <metadataKeys> [flags]\fR"
+.IX Item "rack files account delete-metadata --metadata-keys <metadataKeys> [flags]"
+Delete specific metadata associated with the account.
+.SS "\s-1CONTAINER COMMANDS\s0"
+.IX Subsection "CONTAINER"
+.IP "\fBrack files container get [--name <containerName> | --stdin name] [flags]\fR"
+.IX Item "rack files container get [--name <containerName> | --stdin name] [flags]"
+Retreives a container
+.IP "\fBrack files container list  [flags]\fR"
+.IX Item "rack files container list  [flags]"
+Lists containers
+.IP "\fBrack files container create [--name <containerName> | --stdin name] [flags]\fR"
+.IX Item "rack files container create [--name <containerName> | --stdin name] [flags]"
+Creates a container
+.IP "\fBrack files container delete [--name <containerName> | --stdin name] [flags]\fR"
+.IX Item "rack files container delete [--name <containerName> | --stdin name] [flags]"
+Deletes a container
+.IP "\fBrack files container update --name <containerName> [flags]\fR"
+.IX Item "rack files container update --name <containerName> [flags]"
+Updates a container
+.IP "\fBrack files container empty [--name <containerName> | --stdin name] [flags]\fR"
+.IX Item "rack files container empty [--name <containerName> | --stdin name] [flags]"
+Deletes all objects in a container, but not the container itself.
+.IP "\fBrack files container set-metadata --name <containerName> --metadata <metadata> [flags]\fR"
+.IX Item "rack files container set-metadata --name <containerName> --metadata <metadata> [flags]"
+Set metadata for the given container. This will erase any current metadata.
+.IP "\fBrack files container update-metadata --name <containerName> --metadata <metadata> [flags]\fR"
+.IX Item "rack files container update-metadata --name <containerName> --metadata <metadata> [flags]"
+Create or replace metadata for the given container. Any existing metadata will remain in tact.
+.IP "\fBrack files container get-metadata --name <containerName> [flags]\fR"
+.IX Item "rack files container get-metadata --name <containerName> [flags]"
+Get metadata for the given container.
+.IP "\fBrack files container delete-metadata --name <containerName> --metadata-keys <metadataKeys> [flags]\fR"
+.IX Item "rack files container delete-metadata --name <containerName> --metadata-keys <metadataKeys> [flags]"
+Delete specific metadata from the given container.
+.SS "\s-1OBJECT COMMANDS\s0"
+.IX Subsection "OBJECT"
+.IP "\fBrack files object list [--container <containerName> | --stdin container] [flags]\fR"
+.IX Item "rack files object list [--container <containerName> | --stdin container] [flags]"
+Lists objects in a container
+.IP "\fBrack files object upload --container <containerName> --name <objectName> [flags]\fR"
+.IX Item "rack files object upload --container <containerName> --name <objectName> [flags]"
+Uploads an object
+.IP "\fBrack files object upload-dir --container <containerName> [--dir <dirName> | --stdin dir] [flags]\fR"
+.IX Item "rack files object upload-dir --container <containerName> [--dir <dirName> | --stdin dir] [flags]"
+Uploads the contents of a local directory to a container
+.IP "\fBrack files object download --container <containerName> --name <objectName> [flags]\fR"
+.IX Item "rack files object download --container <containerName> --name <objectName> [flags]"
+Downloads an object
+.IP "\fBrack files object get --container <containerName> --name <objectName> [flags]\fR"
+.IX Item "rack files object get --container <containerName> --name <objectName> [flags]"
+Retreives an object
+.IP "\fBrack files object delete --container <containerName> [--name <objectName> | --stdin name] [flags]\fR"
+.IX Item "rack files object delete --container <containerName> [--name <objectName> | --stdin name] [flags]"
+Deletes an object
+.IP "\fBrack files object set-metadata --name <objectName> --container <containerName> --metadata <metadata> [flags]\fR"
+.IX Item "rack files object set-metadata --name <objectName> --container <containerName> --metadata <metadata> [flags]"
+Set metadata for the given object. This will erase any current metadata.
+.IP "\fBrack files object update-metadata --name <objectName> --container <containerName> --metadata <metadata> [flags]\fR"
+.IX Item "rack files object update-metadata --name <objectName> --container <containerName> --metadata <metadata> [flags]"
+Create or replace metadata for the given object. Any existing metadata will remain in tact.
+.IP "\fBrack files object get-metadata --name <objectName> --container <containerName> [flags]\fR"
+.IX Item "rack files object get-metadata --name <objectName> --container <containerName> [flags]"
+Get metadata for the given object.
+.IP "\fBrack files object delete-metadata --name <objectName> --container <containerName> --metadata-keys <metadataKeys> [flags]\fR"
+.IX Item "rack files object delete-metadata --name <objectName> --container <containerName> --metadata-keys <metadataKeys> [flags]"
+Delete specific metadata from the given object.
+.SS "\s-1LARGE-OBJECT COMMANDS\s0"
+.IX Subsection "LARGE-OBJECT"
+.IP "\fBrack files large-object upload --container <containerName> --size-pieces <sizePieces> [--name <objectName> | --stdin file] [flags]\fR"
+.IX Item "rack files large-object upload --container <containerName> --size-pieces <sizePieces> [--name <objectName> | --stdin file] [flags]"
+Uploads a large object
+.IP "\fBrack files large-object delete --container <containerName> [--name <objectName> | --stdin name] [flags]\fR"
+.IX Item "rack files large-object delete --container <containerName> [--name <objectName> | --stdin name] [flags]"
+Deletes a large object
+.SH NETWORKS COMMANDS
+Software-defined networking
+.SS "\s-1NETWORK COMMANDS\s0"
+.IX Subsection "NETWORK"
+.IP "\fBrack networks network create --name <networkName> [flags]\fR"
+.IX Item "rack networks network create --name <networkName> [flags]"
+Creates a new network
+.IP "\fBrack networks network get  [flags]\fR"
+.IX Item "rack networks network get  [flags]"
+Gets an existing network
+.IP "\fBrack networks network delete  [flags]\fR"
+.IX Item "rack networks network delete  [flags]"
+Deletes an existing network
+.IP "\fBrack networks network list  [flags]\fR"
+.IX Item "rack networks network list  [flags]"
+Lists existing networks
+.IP "\fBrack networks network update  [flags]\fR"
+.IX Item "rack networks network update  [flags]"
+Updates a new networks instance
+.SS "\s-1SUBNET COMMANDS\s0"
+.IX Subsection "SUBNET"
+.IP "\fBrack networks subnet create --network-id <networkID> --cidr <CIDR> --ip-version <4|6> [flags]\fR"
+.IX Item "rack networks subnet create --network-id <networkID> --cidr <CIDR> --ip-version <4|6> [flags]"
+Creates a subnet
+.IP "\fBrack networks subnet get  [flags]\fR"
+.IX Item "rack networks subnet get  [flags]"
+Gets an existing subnet
+.IP "\fBrack networks subnet delete  [flags]\fR"
+.IX Item "rack networks subnet delete  [flags]"
+Deletes an existing subnet
+.IP "\fBrack networks subnet list  [flags]\fR"
+.IX Item "rack networks subnet list  [flags]"
+Lists existing networks
+.IP "\fBrack networks subnet update  [flags]\fR"
+.IX Item "rack networks subnet update  [flags]"
+Updates a subnet
+.SS "\s-1PORT COMMANDS\s0"
+.IX Subsection "PORT"
+.IP "\fBrack networks port create --network-id <network-id> [flags]\fR"
+.IX Item "rack networks port create --network-id <network-id> [flags]"
+Creates a ports
+.IP "\fBrack networks port get [--id <portID> | --name <portName> | --stdin id] [flags]\fR"
+.IX Item "rack networks port get [--id <portID> | --name <portName> | --stdin id] [flags]"
+Retrieves information about a port
+.IP "\fBrack networks port delete [--id <portID> | --name <portName> | --stdin id] [flags]\fR"
+.IX Item "rack networks port delete [--id <portID> | --name <portName> | --stdin id] [flags]"
+Deletes a port
+.IP "\fBrack networks port list  [flags]\fR"
+.IX Item "rack networks port list  [flags]"
+Lists existing ports
+.IP "\fBrack networks port update [--id <portID> | --name <portName>] [flags]\fR"
+.IX Item "rack networks port update [--id <portID> | --name <portName>] [flags]"
+Updates a ports
+.SS "\s-1SECURITY-GROUP COMMANDS\s0"
+.IX Subsection "SECURITY-GROUP"
+.IP "\fBrack networks security-group create --name <securityGroupName> [flags]\fR"
+.IX Item "rack networks security-group create --name <securityGroupName> [flags]"
+Creates a security group
+.IP "\fBrack networks security-group get  [flags]\fR"
+.IX Item "rack networks security-group get  [flags]"
+Gets an existing security group
+.IP "\fBrack networks security-group delete  [flags]\fR"
+.IX Item "rack networks security-group delete  [flags]"
+Deletes an existing security group
+.IP "\fBrack networks security-group list  [flags]\fR"
+.IX Item "rack networks security-group list  [flags]"
+Lists existing security groups
+.SS "\s-1SECURITY-GROUP-RULE COMMANDS\s0"
+.IX Subsection "SECURITY-GROUP-RULE"
+.IP "\fBrack networks security-group-rule create --security-group-id <securityGroupID> --direction <ingress|egress> --ether-type <ipv4|ipv6> [flags]\fR"
+.IX Item "rack networks security-group-rule create --security-group-id <securityGroupID> --direction <ingress|egress> --ether-type <ipv4|ipv6> [flags]"
+Creates a security group rule
+.IP "\fBrack networks security-group-rule get [--id <securityGroupRuleID> | --stdin id] [flags]\fR"
+.IX Item "rack networks security-group-rule get [--id <securityGroupRuleID> | --stdin id] [flags]"
+Retrieves information about an existing security group rule
+.IP "\fBrack networks security-group-rule delete [--id <securityGroupRuleID> | --stdin id] [flags]\fR"
+.IX Item "rack networks security-group-rule delete [--id <securityGroupRuleID> | --stdin id] [flags]"
+Deletes an existing security group rule
+.IP "\fBrack networks security-group-rule list  [flags]\fR"
+.IX Item "rack networks security-group-rule list  [flags]"
+Lists existing security group rules
+.SH BLOCK-STORAGE COMMANDS
+Block-level storage, exposed as volumes to mount to
+	host servers. Work with volumes and their associated snapshots
+.SS "\s-1SNAPSHOT COMMANDS\s0"
+.IX Subsection "SNAPSHOT"
+.IP "\fBrack block-storage snapshots list  [flags]\fR"
+.IX Item "rack block-storage snapshots list  [flags]"
+Lists existing snapshots
+.IP "\fBrack block-storage snapshots get [--id <snapshotID> | --name <snapshotName> | --stdin id] [flags]\fR"
+.IX Item "rack block-storage snapshots get [--id <snapshotID> | --name <snapshotName> | --stdin id] [flags]"
+Gets a snapshot
+.IP "\fBrack block-storage snapshots create --volume-id <volumeID> [flags]\fR"
+.IX Item "rack block-storage snapshots create --volume-id <volumeID> [flags]"
+Creates a volume
+.IP "\fBrack block-storage snapshots delete [--id <snapshotID> | --name <snapshotName> | --stdin id] [flags]\fR"
+.IX Item "rack block-storage snapshots delete [--id <snapshotID> | --name <snapshotName> | --stdin id] [flags]"
+Deletes a snapshot
+.SS "\s-1VOLUME COMMANDS\s0"
+.IX Subsection "VOLUME"
+.IP "\fBrack block-storage volume list  [flags]\fR"
+.IX Item "rack block-storage volume list  [flags]"
+Lists existing volumes
+.IP "\fBrack block-storage volume get [--id <volumeID> | --name <volumeName> | --stdin id] [flags]\fR"
+.IX Item "rack block-storage volume get [--id <volumeID> | --name <volumeName> | --stdin id] [flags]"
+Gets a volume
+.IP "\fBrack block-storage volume create --size <size> [flags]\fR"
+.IX Item "rack block-storage volume create --size <size> [flags]"
+Creates a volume
+.IP "\fBrack block-storage volume update [--id <volumeID> | --name <volumeName>] [flags]\fR"
+.IX Item "rack block-storage volume update [--id <volumeID> | --name <volumeName>] [flags]"
+Updates a volume
+.IP "\fBrack block-storage volume delete [--id <volumeID> | --name <volumeName> | --stdin id] [flags]\fR"
+.IX Item "rack block-storage volume delete [--id <volumeID> | --name <volumeName> | --stdin id] [flags]"
+Deletes a volume
+.SH ORCHESTRATION COMMANDS
+Use a template language to orchestrate Rackspace cloud services
+.SS "\s-1BUILD-INFO COMMANDS\s0"
+.IX Subsection "BUILD-INFO"
+.IP "\fBrack orchestration build-info get  [flags]\fR"
+.IX Item "rack orchestration build-info get  [flags]"
+Retrieve build information for a Heat deployment
+.SS "\s-1STACK COMMANDS\s0"
+.IX Subsection "STACK"
+.IP "\fBrack orchestration stack abandon [--name <stackName> | --id <stackID> | --stdin name] [flags]\fR"
+.IX Item "rack orchestration stack abandon [--name <stackName> | --id <stackID> | --stdin name] [flags]"
+Deletes an existing stack, but leaves resources intact
+.IP "\fBrack orchestration stack adopt --name <stackName> --adopt-file <adoptFile> [flags]\fR"
+.IX Item "rack orchestration stack adopt --name <stackName> --adopt-file <adoptFile> [flags]"
+Creates a stack from existing resources
+.IP "\fBrack orchestration stack create [--name <stackName>] [--template-file <templateFile> | --template-url <templateURL>] [flags]\fR"
+.IX Item "rack orchestration stack create [--name <stackName>] [--template-file <templateFile> | --template-url <templateURL>] [flags]"
+Creates a stack
+.IP "\fBrack orchestration stack get [--name <stackName> | --id <stackID> | --stdin name] [flags]\fR"
+.IX Item "rack orchestration stack get [--name <stackName> | --id <stackID> | --stdin name] [flags]"
+Retrieve a deployed stack
+.IP "\fBrack orchestration stack get-template [--name <stackName> | --id <stackID> | --stdin name] [flags]\fR"
+.IX Item "rack orchestration stack get-template [--name <stackName> | --id <stackID> | --stdin name] [flags]"
+Get template for specified stack
+.IP "\fBrack orchestration stack list  [flags]\fR"
+.IX Item "rack orchestration stack list  [flags]"
+Retrieve a list of deployed stacks
+.IP "\fBrack orchestration stack list-events [--name <stackName> | --id <stackID> | --stdin name] [flags]\fR"
+.IX Item "rack orchestration stack list-events [--name <stackName> | --id <stackID> | --stdin name] [flags]"
+Lists events for a specified stack
+.IP "\fBrack orchestration stack preview [--name <stackName> | --stdin name] [--template-file <templateFile> | --template-url <templateURL>] [flags]\fR"
+.IX Item "rack orchestration stack preview [--name <stackName> | --stdin name] [--template-file <templateFile> | --template-url <templateURL>] [flags]"
+Preview a stack
+.IP "\fBrack orchestration stack delete [--name <stackName> | --id <stackID> | --stdin name] [flags]\fR"
+.IX Item "rack orchestration stack delete [--name <stackName> | --id <stackID> | --stdin name] [flags]"
+Deletes an existing stack
+.IP "\fBrack orchestration stack update [--name <stackName> | --id <stackID>] [--template-file <templateFile> | --template-url <templateURL>] [flags]\fR"
+.IX Item "rack orchestration stack update [--name <stackName> | --id <stackID>] [--template-file <templateFile> | --template-url <templateURL>] [flags]"
+Updates a specified stack
+.SS "\s-1EVENT COMMANDS\s0"
+.IX Subsection "EVENT"
+.IP "\fBrack orchestration event get [--stack-name <stackName> | --stack-id <stackID>] --resource <resourceName> --id <eventID> [flags]\fR"
+.IX Item "rack orchestration event get [--stack-name <stackName> | --stack-id <stackID>] --resource <resourceName> --id <eventID> [flags]"
+Show details for a specified event
+.SS "\s-1RESOURCE COMMANDS\s0"
+.IX Subsection "RESOURCE"
+.IP "\fBrack orchestration resource list [--stack-name <stackName> | --stack-id <stackID> | --stdin stack-name] [flags]\fR"
+.IX Item "rack orchestration resource list [--stack-name <stackName> | --stack-id <stackID> | --stdin stack-name] [flags]"
+List resources in a stack
+.IP "\fBrack orchestration resource get [--stack-name <stackName> | --stack-id <stackID>] --name <resourceName> [flags]\fR"
+.IX Item "rack orchestration resource get [--stack-name <stackName> | --stack-id <stackID>] --name <resourceName> [flags]"
+Show data for specified resource
+.IP "\fBrack orchestration resource get-schema  [--type <resourceType> | --stdin type] [flags]\fR"
+.IX Item "rack orchestration resource get-schema  [--type <resourceType> | --stdin type] [flags]"
+Shows the interface schema for a specified resource type.
+.IP "\fBrack orchestration resource get-template  [--type <resourceType> | --stdin type] [flags]\fR"
+.IX Item "rack orchestration resource get-template  [--type <resourceType> | --stdin type] [flags]"
+Show template representation for specified resource type
+.IP "\fBrack orchestration resource list-events [--stack-name <stackName> | --stack-id <stackID>] --name <resourceName> [flags]\fR"
+.IX Item "rack orchestration resource list-events [--stack-name <stackName> | --stack-id <stackID>] --name <resourceName> [flags]"
+Lists events for a specified stack resource
+.IP "\fBrack orchestration resource list-types  [flags]\fR"
+.IX Item "rack orchestration resource list-types  [flags]"
+List all supported template resource types
+.SS "\s-1TEMPLATE COMMANDS\s0"
+.IX Subsection "TEMPLATE"
+.IP "\fBrack orchestration template validate [--template-file <templateFile> | --template-url <templateURL>] [flags]\fR"
+.IX Item "rack orchestration template validate [--template-file <templateFile> | --template-url <templateURL>] [flags]"
+Validate a specified template
+.SH BUGS
+See https://github.com/rackspace/rack/issues

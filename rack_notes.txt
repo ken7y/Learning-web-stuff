@@ -1,0 +1,37 @@
+<Rack important stuff> 
+
+backup config.ru is how you start the web server. Find the port and just go localhost:port
+
+In the ruby file instead of using puts to print something, use resp.write "text here" 
+
+The "resp" is just whatever you named to be Rack::Response.new , it's just a variable name.
+
+
+
+
+
+
+
+
+
+# web notes
+<Loading a webpage notes> 
+
+When trying to load youtube, the client sends a HTTP GET request to youtube's server. Youtube's server then sends back a response and the client renders the page in the browser.
+
+Requests are made through URLs.
+
+HEAD - Asks for a response like a GET but without the body
+GET - Retries a representation of a resource
+POST - Submit data to be processed in the body of the request
+PUT - Uploads a representation of a resource in the body of the request
+TRACE - Echoes back the received request 
+
+
+<Static and Dynamic> 
+
+Static web apps don't change unless a dev changes the code but dynamic web apps are sites where the content changes based on user input e.g facebook airbnb etc. Every time you visit the site, the content is most likely different because someone else gave a review of a house or uploaded a new pic. 
+
+When the client wants to load a static site, the client makes a request and the server finds the file on disk and sends it back. Ezypzy 
+
+With dynamic web apps, the client makes a request, the server runs application code and returns a dynamically generated response. 
