@@ -3,8 +3,12 @@ By using this line of code, bundle install will lock in current
 version of the gems used for the app. So if any updates happen, the App
 won't break. It keeps the versions locked in a file called Gemfile.lock
 
-<Modular Sinatra Applications>
+<Shotgun>
+Instead of using rackup, you can use shotgun which will reload code when
+you save it. Saves you time from restarting server everytime you change
+something
 
+<Modular Sinatra Applications>
 Web apps, even simple Sinatra ones tend to require a certain degree of
 complexity. E.g multiple routes, route handlers, and configuration.
 To handle this, Sinatra is more commonly used through the
@@ -31,3 +35,23 @@ interface through inheriting from the "base" of the Sinatra framework.
  #
  The class Application inherits from Sinatra::Base which defines the HTTP
  interface and are called Controllers
+
+ In a single controller application, a single file defining the controller
+ like app.rb will be enough as that controller will define every single
+ url and response of the application.
+
+ Controllers define an HTTP method using the Sinatra routing DSL provided
+ by methods like get and post.
+
+ The final step in creating a controller is mounting it in config.ru. Mounting
+ a controller means telling Rack that part of your webapp is defined within
+ the following class. We do this in config.ru by using "run Application"
+ where "run" is the mounting method and "Application" is the Controller class
+ that inherits from Sinatra::Base
+
+ tldr
+ #
+ define and create sinatra controller in a separate ruby file.
+ Do this by creating a class which inherits from Sinatra::Base
+ then mount the controller in config.ru by simply
+ run NameofClass

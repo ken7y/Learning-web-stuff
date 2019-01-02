@@ -1,0 +1,41 @@
+<Model-View-Controller paradigm>
+
+In a nutshell
+
+Model: The logic of a webapp. This is where the data is stored/manipulated
+
+View: The front end user facing part of the webapp. This is the only
+      part of the app where that the user interacts with directly. View
+      generally consists of HTML,CSS and Javascript.
+
+Controllers: The controllers relay data from the browser to the app and
+             from the app to the browser.
+
+<Restaurant analogy>
+
+So in a restaurant theres a clear separation between the roles of the
+staff.
+
+The models in the restaurant are the chefs who make the food. They take
+the orders from the waiters and prepare the customers meals. When ready
+they give the orders to the waiters to deliver to the customer.
+In Sinatra, models are generally written as a Ruby class. Models can
+also connect to databases to persist data. Models are the main logic
+behind the webapp.
+
+The views in the restaurant are the food ordered. The customer places
+an order and receives their plates of food(views).
+In Sinatra, views are written as .erb files consisting of HTML and
+embedded Ruby (ruby code written within HTML). They are what the
+users actually sees when they use your web app.
+
+
+The controllers are waiters who shuffle between the kitchen and the
+front of the restaurant. They take requests from the customer to the
+kitchen and take prepared meals from the kitchen to the customer.
+Without the waiter, our customers would be hungry and our chefs would
+have nothing to do.
+In Sinatra, controllers are written in Ruby and consists of 'routes' that
+take requests sent from the browser ("GET this data, POST this data").
+They also run code based on those requests by using models and then
+render the .erb (view) files for the user to see.
