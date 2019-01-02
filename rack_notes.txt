@@ -7,14 +7,21 @@ In the ruby file instead of using puts to print something, use resp.write "text 
 The "resp" is just whatever you named to be Rack::Response.new , it's just a variable name.
 
 
-
-
-
-
-
-
-
 # web notes
+
+<Status codes>
+
+1xx: Informational ( request received and continuing process)
+2xx: Success
+3xx: Redirection
+4xx: Client error
+5xx: Server error
+
+In Rack the default status code is 200 but when a user selects a route that doesn't exist, we should change the status to 404
+this can be done with 
+resp.status = 404
+
+
 <Loading a webpage notes> 
 
 When trying to load youtube, the client sends a HTTP GET request to youtube's server. Youtube's server then sends back a response and the client renders the page in the browser.

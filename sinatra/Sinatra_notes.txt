@@ -1,0 +1,33 @@
+<bundle install>
+By using this line of code, bundle install will lock in current
+version of the gems used for the app. So if any updates happen, the App
+won't break. It keeps the versions locked in a file called Gemfile.lock
+
+<Modular Sinatra Applications>
+
+Web apps, even simple Sinatra ones tend to require a certain degree of
+complexity. E.g multiple routes, route handlers, and configuration.
+To handle this, Sinatra is more commonly used through the
+Modular Sinatra Pattern (over the classical single file app.rb pattern)
+
+So the first new convention this pattern introduces is the config.ru
+The purpose of config.ru is have the environments requirements of the
+application and start the application.
+
+A common config.ru would look like
+#
+require 'sinatra'
+require_relative './app.rb'
+run Application
+#
+So config.ru requires a valid Sinatra Controller to run. A Sinatra Controller
+is simply a Ruby class that inherits from Sinatra::Base. This inheritance
+transforms a normal ruby class into a web app by giving it a rack-compatible
+interface through inheriting from the "base" of the Sinatra framework.
+
+ So say in our app.rb we have this line
+ #
+ class Application < Sinatra::Base
+ #
+ The class Application inherits from Sinatra::Base which defines the HTTP
+ interface and are called Controllers
