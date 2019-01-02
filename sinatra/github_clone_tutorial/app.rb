@@ -3,7 +3,8 @@ require 'sinatra'
 class App < Sinatra::Base
 
   get '/' do
-    "Hello, world!"
+    "Started my server using Shotgun!"
+
   end
 
 end
