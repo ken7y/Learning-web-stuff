@@ -39,3 +39,14 @@ In Sinatra, controllers are written in Ruby and consists of 'routes' that
 take requests sent from the browser ("GET this data, POST this data").
 They also run code based on those requests by using models and then
 render the .erb (view) files for the user to see.
+
+
+
+
+#
+get '/' do
+  # so by just the line below, Sinatra will render a file called
+  # index.erb inside a directory called views.
+  erb :index
+end
+#

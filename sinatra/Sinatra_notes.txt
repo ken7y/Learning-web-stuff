@@ -3,6 +3,58 @@ By using this line of code, bundle install will lock in current
 version of the gems used for the app. So if any updates happen, the App
 won't break. It keeps the versions locked in a file called Gemfile.lock
 
+<Erbs>
+Most major web frameworks provide some means of view templating.
+Ie allowing the view,in our case an HTML doc, to be constructed using a combination
+of ruby code and html.
+This allows reducing the duplication of HTML and to generate content that can
+change based on available data e.g facebook.
+
+<ERB TAGS very important>
+ERB and other templating engines allow us to modify the content and structure
+of our HTML code. We can use two different tags. The substitution tag <%= and
+the scripting tag <%
+
+So the substitution tags let you write ruby code inside of them. e.g
+<%= "I love " + "Ruby!!" %>
+You can wrap HTML tags around substitution tags e.g
+<h1><%= "I love " + "Ruby!!" %></h1>
+
+The scripting tag however lets you well script. An example would be
+
+<% if 1 == 2 %>
+  <p>1 equals 2.</p>
+<% else %>
+  <p>1 does not equal 2.</p>
+<% end %>
+
+or we something more realistic
+
+<% if logged_in? %>
+  <a href="/logout">Click here to Log Out</a>
+<% else %>
+  <a href="/login">Click here to Log In</a>
+<% end %>
+
+Scripting tags can also be used for iteration. This is probably going to be
+super useful with nokogiri.
+The below code
+<ul>
+  <% squares = [1, 4, 9, 16] %>
+  <% squares.each do |square| %>
+    <li><%= square %></li>
+  <% end %>
+</ul>
+
+would produce
+
+<ul>
+  <li>1</li>
+  <li>4</li>
+  <li>9</li>
+  <li>16</li>
+</ul>
+
 <Shotgun>
 Instead of using rackup, you can use shotgun which will reload code when
 you save it. Saves you time from restarting server everytime you change
