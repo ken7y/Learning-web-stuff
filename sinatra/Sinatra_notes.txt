@@ -60,6 +60,12 @@ Instead of using rackup, you can use shotgun which will reload code when
 you save it. Saves you time from restarting server everytime you change
 something
 
+
+<Dynamic Routes>
+
+
+
+
 <Modular Sinatra Applications>
 Web apps, even simple Sinatra ones tend to require a certain degree of
 complexity. E.g multiple routes, route handlers, and configuration.

@@ -50,3 +50,71 @@ get '/' do
   erb :index
 end
 #
+
+
+
+<MVC pyramid>
+
+
+Imagine a pyramid, at the top we have User browser then the views
+then the controllers, models and database at the bottom.
+
+There are three levels of testing in MVC.
+
+The testing for the user browser and views(HTML) are called
+the integration testing.
+
+The testing for the controllers are just called controller testing
+and the testing for the models are called unit testing.
+
+
+User/Browser: The top of our application pyramid is the user. Whether
+describing the people using our app, the interface they use such as
+command line, html or chrome our application is responsible for delivering
+the user an experience on some sort of pre-existing platform.
+
+Views: views present information to the user. Any code that is responsible
+for presenting data or output to the user, from methods such as puts to
+HTML ERB templates could be considered view.
+
+Controllers: provide main interface and app logic. They deal with things
+like "What data should I show a user in response to a certain input from
+that user" or like "what html page should i redirect them to when they
+visit this link."
+
+Models: provide an object orientated abstraction or metaphor for the
+data in our application. Our models do the job of interacting with the
+database for us. Our model can talk to the database by asking for certain
+data to create new instances of a class.
+
+Database: persist and save data from our app.
+
+
+<Basic MVC flow>
+1) The user interacts with our applications view via web Browser
+   The user enters some input that asks our application to show
+   them a list of their friends who are using the app
+2) The controller receives this request and looks at it. The controllers
+   says "Ok this user wants to see their friends using the app"
+3) The controller then asks the "Friend" model to go into the database
+   and return all the users friends.
+4) The model goes into the database and retrieves the requested data
+   and gives it to the controller
+5) The controller passes that data to a view and the view displays it
+   to the user.
+
+<Three levels of testing>
+
+Unit tests test the models in our app and how they interact
+with our databases
+
+Controller tests test that the code responsible for delivering the
+appropriate data to a user is working properly. In a web app, the
+controller test is responsible for making sure that an HTTP request
+returns the expected HTTP response. Controller tests should not test
+HTML or forms but rather the controller is behaving as expected
+
+Integration tests are the highest level test and they are closest to
+describing how a user will actually interact with our app.
+Commonly referred to as the "End to End" tests, integration tests
+should flex your entire app stack.
