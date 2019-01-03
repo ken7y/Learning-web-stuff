@@ -1,0 +1,45 @@
+<Object Relational Mapping>
+ORM is the technique of accessing a relational database using an
+object oriented programming language. ORM is a way for ruby programs
+to manage database data by "mapping" database tables to classes and
+instances of classes to rows in those tables.
+
+It's pretty straight forward, e.g
+
+database_connection = SQLite3::Database.new('db/my_database.db')
+
+database_connection.execute("Some SQL statement")
+
+So orms just down on repetitive code and it's a conventional pattern
+thats organized and sensical.
+
+In regards to repetitive code, instead of having multiple
+database_connection.execute("INSERT INTO cats (name, breed, age) VALUES ('Hana', 'tortoiseshell', 1)")
+we can have a self.save function in the cat class
+
+and instead of having 5 lines of database.execute(inserts)
+we can just have a loop and do something like
+
+cats.all.each do |cat|
+  cat.save(cat.name,cat.breed,cat.age etc)
+end
+
+which makes our code cleaner
+
+
+<Database tables into ruby>
+
+So ruby understands objects and databases understand raw data
+
+We store raw data describing a given Ruby object in a table
+row and when we want to reconstruct a ruby object from the stored
+data we query the database and turn the data back into an instance
+of the appropriate class.
+
+Imagine if we have a database of songs, and their length.
+So one example of a row could be [3,"Thriller",356]
+
+We would have to do something along the lines of
+newsong.id = row[0]
+newsong.name = row[1]
+newsong.length = row[2]
