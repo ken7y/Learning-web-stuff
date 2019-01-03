@@ -13,7 +13,7 @@ SQL aka structured query language is a language for managing data in databases. 
 
 CREATE TABLE cats( id INTEGER PRIMARY KEY, name TEXT, age, INTEGER);
 
-so the non "cat naming stuff" is in upper case so we don't lose track of things and get things mixed up. 
+so the non "cat naming stuff" is in upper case so we don't lose track of things and get things mixed up.
 
 <altering tables>
 
@@ -23,18 +23,18 @@ ALTER TABLE cats ADD COLUMN breed TEXT
 <data types>
 TEXT: Your alphanumerical characters you want to represent as plain text
 INTEGER: Whole numbers with no letter or special characters or decimal points.
-REAL: Good ol decimals. sqlite will store decimals up to 15 characters long. 
-BLOB: Generally used for holding binary data. 
+REAL: Good ol decimals. sqlite will store decimals up to 15 characters long.
+BLOB: Generally used for holding binary data.
 
 <Inserting>
 
-If the ID column is a Primary Key then you don't need to worry about setting anything as the ID when you're inserting data because Primary Key columns are auto-incrementing. 
+If the ID column is a Primary Key then you don't need to worry about setting anything as the ID when you're inserting data because Primary Key columns are auto-incrementing.
 An example of an insertion is INSERT INTO cats(name,age,breed) VALUES ('Maru',3,'Scottish Fold');
 
 
-<Select> 
+<Select>
 SELECT [name of columns we are going to select] FROM [Table name]
-e.g 
+e.g
 SELECT id, name,age,breed FROM cats;
 
 SELECT * FROM cats; (Show all in the database)
@@ -44,8 +44,8 @@ This is useful when you have a bunch of tables in one .db file
 
 <Where>
 
-Kind of like an if statement so if you want to see the data of a specific cat you can say SELECT * FROM cats WHERE name = "Maru"; or something like 
-SELECT * FROM cats WHERE age = "1"; or 
+Kind of like an if statement so if you want to see the data of a specific cat you can say SELECT * FROM cats WHERE name = "Maru"; or something like
+SELECT * FROM cats WHERE age = "1"; or
 SELECT * FROM cats WHERE age < 4;
 
 
@@ -54,40 +54,40 @@ SELECT * FROM cats WHERE age < 4;
 So you can update a row in the database. Say if you want to change the name you can do this
 UPDATE cats SET name = "Hana" WHERE name = "Hannah";
 
-So the format is 
+So the format is
 UPDATE [table name] SET [column name] = "new value" WHERE [column name] = "old value you want to replace"
 
 
 
 <Delete> 
 
-DELETE FROM [table name] WHERE [column name] = [value] 
+DELETE FROM [table name] WHERE [column name] = [value]
 
 example
 
-DELETE FROM cats WHERE id = 2;  or 
+DELETE FROM cats WHERE id = 2;  or
 DELETE FROM cats where name = "Maru";
 
 
 
 <Querying>
-Query refers to any SQL statement that retrieves data from your databases. For example 
-SELECT * FROM cats; is a query as it selects all of the rows from a table called cats. 
+Query refers to any SQL statement that retrieves data from your databases. For example
+SELECT * FROM cats; is a query as it selects all of the rows from a table called cats.
 
-or SELECT * FROM cats WHERE name = "Maru"; 
+or SELECT * FROM cats WHERE name = "Maru";
 
 
 
 <Order by>
 
 So one way we can sort our list of cats is by age.
-To do that we write : SELECT * FROM cats ORDER BY age; 
+To do that we write : SELECT * FROM cats ORDER BY age;
 The template is SELECT [column name] FROM [table name] ORDER BY [column name] ASC|DESC;
 
 
-<Limit> 
+<Limit>
 
-So say our database has 10,000 entries and I only want the oldest cat. I can do the my sort age in descending order and add LIMIT 1 so I'll only get one result back which is the oldest. 
+So say our database has 10,000 entries and I only want the oldest cat. I can do the my sort age in descending order and add LIMIT 1 so I'll only get one result back which is the oldest.
 
 E.g SELECT * FROM cats ORDER BY age DESC LIMIT 1;
 
@@ -98,30 +98,30 @@ SELECT * FROM cats WHERE age BETWEEN 1 AND 3
 
 Basically a normal SELECT query but with the BETWEEN tag you can find cats between certain age or between certain ID.
 
-<Null> 
+<Null>
 
-So lets say you have a cat and it has a name but you can't identify the age or the breed, you can add it into the database still despite missing data. 
+So lets say you have a cat and it has a name but you can't identify the age or the breed, you can add it into the database still despite missing data.
 
 INSERT INTO cats (name,age,breed) VALUES ("Bob", NULL, NULL);
 
-You can even search for cats with a null age or null breed with 
+You can even search for cats with a null age or null breed with
 
 SELECT * FROM cats WHERE age IS NULL;
 
 
-<Count> 
-This will give you the number of matches with your query. e.g 
-SELECT COUNT(name) FROM cats WHERE age BETWEEN 1 AND 3; or 
+<Count>
+This will give you the number of matches with your query. e.g
+SELECT COUNT(name) FROM cats WHERE age BETWEEN 1 AND 3; or
 SELECT COUNT(*) FROM cats WHERE age = 3; which will find out how many cats have the age of 3.
 
-<Group by> 
+<Group by>
 SELECT breed, count(*) FROM cats GROUP BY breed;
-So this like will group by breed and will tell you the count of each breed. 
+So this like will group by breed and will tell you the count of each breed.
 
 
 <Multiple Tables>
 
-So say I've got multiple tables in a .db file. E.g I have cats and dogs table. 
+So say I've got multiple tables in a .db file. E.g I have cats and dogs table.
 
 I can display names of all the cats and the dogs with this line
 SELECT cats.name, dogs.name FROM cats,dogs;
@@ -130,7 +130,7 @@ Format is SELECT [table1.column,table2.column] FROM [table1,table2];
 
 
 <Aggregate Functions>
-These functions perform a calculation on specified values such as average, sum, count, min or max. 
+These functions perform a calculation on specified values such as average, sum, count, min or max.
 
 
 
@@ -140,12 +140,12 @@ These functions perform a calculation on specified values such as average, sum, 
 So to find the average of a column all you do it
 SELECT AVG(column name) FROM table name
 
-so SELECT AVG(age) FROM cats; 
+so SELECT AVG(age) FROM cats;
 
 <Sum>
-The sum is very similar to average. You just replace AVG with SUM 
+The sum is very similar to average. You just replace AVG with SUM
 
-SELECT SUM(age) FROM cats; 
+SELECT SUM(age) FROM cats;
 
 
 <Min and Max>
@@ -163,31 +163,30 @@ SELECT Min(age) FROM cats;
 <Multiple Tables> <Looking at two here in the examples>
 
 [pretext]
-So say two tables exist. First one is a bunch of info on cats and the second one is a table about the owners. 
-First table has a cat breed, age and owner_id which is the primary id of the owners in the owners table. 
+So say two tables exist. First one is a bunch of info on cats and the second one is a table about the owners.
+First table has a cat breed, age and owner_id which is the primary id of the owners in the owners table.
 
 
-<Inner join> 
+<Inner join>
 
-We first select the columns that we want to display so cats.name, cats.breed and owners.name. 
+We first select the columns that we want to display so cats.name, cats.breed and owners.name.
 
-[SELECT cats.name, cats.breed, owners.name] 
+[SELECT cats.name, cats.breed, owners.name]
 
-then we join the two tables together with inner join 
+then we join the two tables together with inner join
 
 [FROM cats INNER JOIN owners] or [FROM table1 INNER JOIN table2]
 
 lastly we tell our query how to connect the two tables. So in this case we match the cats.owner_id with the primary key ID of the owners table hence
 
-[ON cats.owner_id = owners.id] 
+[ON cats.owner_id = owners.id]
 
-making the big statement 
+making the big statement
 
-[SELECT cats.name, cats.breed, owners.name FROM cats INNER JOIN owners ON cats.owner_id = owners.id] 
+[SELECT cats.name, cats.breed, owners.name FROM cats INNER JOIN owners ON cats.owner_id = owners.id]
 
-<Left, Right and Full outer joins> 
+<Left, Right and Full outer joins>
 
-So a left outer joins is where everything on the left table aka table 1 is displayed and only the matches in table 2 or the right table will be displayed. 
+So a left outer joins is where everything on the left table aka table 1 is displayed and only the matches in table 2 or the right table will be displayed.
 
 Right outer join is just left but reversed and full outer join will display everything in both tables but just joint together at the column you specified.
-

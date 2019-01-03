@@ -113,3 +113,35 @@ interface through inheriting from the "base" of the Sinatra framework.
  Do this by creating a class which inherits from Sinatra::Base
  then mount the controller in config.ru by simply
  run NameofClass
+
+
+ <Sessions and cookies>
+
+ So sessions are :semi-permanent connection between two computers
+ such as a client computer running a web browser and a server running
+ rails
+
+ A cookie is a hash that gets stored in the browser and sent back
+ to the server along with every subsequent request.
+
+ So a session is an object, like a hash that stores data describing a
+ client's interactions with a website at any given time.
+
+
+ Sessions vs Cookies
+
+ Session cookies allow a website to keep track of your movement
+ from page to page for that specific session. Session cookies allow you to
+ navigate through a site without repeatedly having to authenticate
+ yourself on every new page you visit within the web application.
+ Session cookies expire every time you log out or navigate away.
+
+ E.g online shopping cart on a guest account
+
+ Persistent Cookies allow a website to remember your user information and preferences
+ for future visits. A persistent cookie is stored on your computer while a
+ session cookie is stored in your web browser.
+ So if you didn't have persistent cookies, every time you visit facebook you
+ would have to login again.
+
+ 
