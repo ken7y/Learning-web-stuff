@@ -56,11 +56,27 @@ class Student
     newStudent.save
     newStudent
 
-
   end
 
+  def self.new_from_db(row)
+    newStudent = self.new(row[1],row[2],row[0])
+    newStudent.id = row[0]
+    newStudent.name = row[1]
+    newStudent.grade = row[2]
+    newStudent
+  end
 
+  def self.find_by_name(name)
+    sql=<<-SQL
+    SELECT * FROM students
+    WHERE name = ?
+    SQL
 
+    DB[:conn].execute(sql,name).map do |stu|
+      self.new_from_db(stu)
+    end.first
+
+  end
 
 
 end
